@@ -38,7 +38,7 @@ const offres = [
 ]
 ---
 
-<Base titre="Offres">
+<Base titre="Offres" >
     
     
         <div x-data="{ showFavorites: false }">
@@ -46,25 +46,22 @@ const offres = [
                 <span x-show="!showFavorites">Afficher les favoris</span>
                 <span x-show="showFavorites">Afficher tout</span>
             </button>
-            <div class="bg-white" x-show="!showFavorites">
+            <div class=" grid grid-cols-3 gap-7  " x-show="!showFavorites">
                 
                 { offres.map((offre) => 
                   <ul>
-                  <li>
+                
                   
-                    <Card nom={offre.nomMaison} prix={offre.prix} surface={offre.surface} favori={offre.favori} adresse={offre.adresse}/>
-                  </li>
+                    <Card {...offre} />
+                  
                   </ul> 
                 )
             }
             </div>
-            <div class="bg-white" x-show="showFavorites">
+            <div class="grid grid-cols-3 gap-7" x-show="showFavorites">
                 { offres.map((offre) => 
                     <ul>
-                    <li>
-                     
-                     {offre.favori && <Card nom={offre.nomMaison} prix={offre.prix} surface={offre.surface} favori={offre.favori} adresse={offre.adresse}/>}
-                    </li>
+                     {offre.favori && <Card {...offre} />}
                     </ul> 
                   )
                 }
