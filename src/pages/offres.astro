@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Card from '../components/card.astro';
 const offres = [
     {
         "adresse": "2821 Lake Sevilla, Palm Harbor, TX",
@@ -39,15 +40,35 @@ const offres = [
 
 <Base titre="Offres">
     
-    <div class="bg-white">
-        <h1>Offres</h1>
-        { offres.map((element) => 
-              <ul>
-              <li>
-                {element.nomMaison}
-              </li>
-              </ul>  // afficher les nom des maisons sous forme de liste <ul>.
-            )
-        }
+    
+        <div x-data="{ showFavorites: false }">
+            <button @click="showFavorites = !showFavorites">
+                <span x-show="!showFavorites">Afficher les favoris</span>
+                <span x-show="showFavorites">Afficher tout</span>
+            </button>
+            <div class="bg-white" x-show="!showFavorites">
+                
+                { offres.map((offre) => 
+                  <ul>
+                  <li>
+                  
+                    <Card nom={offre.nomMaison} prix={offre.prix} surface={offre.surface} favori={offre.favori} adresse={offre.adresse}/>
+                  </li>
+                  </ul> 
+                )
+            }
+            </div>
+            <div class="bg-white" x-show="showFavorites">
+                { offres.map((offre) => 
+                    <ul>
+                    <li>
+                     
+                     {offre.favori && <Card nom={offre.nomMaison} prix={offre.prix} surface={offre.surface} favori={offre.favori} adresse={offre.adresse}/>}
+                    </li>
+                    </ul> 
+                  )
+                }
+            </div>
         </div>
+            
 </Base>
