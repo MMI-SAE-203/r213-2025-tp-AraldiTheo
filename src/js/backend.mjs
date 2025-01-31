@@ -8,7 +8,7 @@ export async function getOffres() {
             sort: '-created',
         });
         data = data.map((event) => {
-            event.date =db.files.getURL(event,event.image);
+            event.image=db.files.getURL(event,event.image);
             return event;
         });
         return data;

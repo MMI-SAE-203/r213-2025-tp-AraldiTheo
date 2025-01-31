@@ -1,13 +1,14 @@
 ---
-const {nomMaison,prix,surface,favori,adresse,id,nbChambres,nbSdb} = Astro.props;
+const {nom,prix,surface,favori,adresse,id,NBchambre,NBsalle_de_bain,image} = Astro.props;
 ---
 <li class="bg-cyan-500 rounded-lg">
-    <p class="text-white text-2xl">{nomMaison}</p>
+    <p class="text-white text-2xl">{nom}</p>
     <p>{prix}€</p>
-    <p>{nbChambres} chambres</p>
-    <p>{nbSdb} salles de bain</p>
+    <p>{NBchambre} chambres</p>
+    <p>{NBsalle_de_bain} salles de bain</p>
     <p>{surface}m2</p>
     <p>{adresse}</p>
+    <img src={image} alt="">
     <p>{id}id</p>
     <p>favori = {favori} </p>
 </li>
