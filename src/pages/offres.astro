@@ -2,6 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Card from '../components/Card.astro';
 import { getOffres } from '../js/backend.mjs';
+import { imageConfig } from 'astro:assets';
+
 
 const offres = await getOffres();
 
@@ -36,5 +38,5 @@ const offres = await getOffres();
                 }
             </div>
         </div>
-            
+       
 </Base>
