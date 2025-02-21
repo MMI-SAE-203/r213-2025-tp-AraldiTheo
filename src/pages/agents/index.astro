@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+import Card from '../../components/card2.astro';
+import { getAgents } from '../../js/backend.mjs';
+let Agent = await getAgents();
+---
+
+<Base titre="Agents" >
+  <form action="/offres" method="POST">
+    <input type="number" name="minPrix" placeholder="Prix minimum" />
+    <input type="number" name="maxPrix" placeholder="Prix maximum" />
+    <input type="submit" value="Filtrer par prix" />
+</form>
+        
+            <div class=" grid grid-cols-3 gap-7  " x-show="!showFavorites">
+                
+                { Agent.map((Agents) => 
+                  <ul>
+                
+                  
+                    <Card {...Agents} />
+                  
+                  </ul> 
+                )
+            }
+            </div>
+            <div class="grid grid-cols-3 gap-7" x-show="showFavorites">
+                { Agent.map((Agents) => 
+                    <ul>
+                     {Agents.favori && <Card {...Agents} />}
+                    </ul> 
+                  )
+                }
+            </div>
+        </div>
+       
+</Base>

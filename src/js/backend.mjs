@@ -48,3 +48,14 @@ export async function filterByPrix(prixMin, prixMax) {
         return [];
     }
 }
+export async function getAgents() {
+    try {
+        let Agents = await db.collection('Agent').getFullList({
+            sort: '-created',
+        });
+        return Agents;
+    } catch (error) {
+        console.log('Une erreur est survenue en lisant la liste des maisons', error);
+        return [];
+    }
+}
